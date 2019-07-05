@@ -2,7 +2,7 @@
     @foreach (var colour in Colours)
     {
         <button class="colour"
-                @onclick="@OnClick(colour)"
+                @onclick="@OnClickWrapper(colour)"
                 @key="@colour">
         </button>
     }
@@ -14,4 +14,17 @@
 
     [Parameter]
     public IEnumerable<string> Colours { get; set; }
+
+    public string CurrentColour { get; set; }
+
+    private Action<UIMouseEventArgs> OnClickWrapper(string colour)
+    {
+        CurrentColour = colour;
+        return OnClick(colour);
+    }
+
+    protected override void OnParametersSet()
+    {
+        CurrentColour = Colours.First();
+    }
 }
