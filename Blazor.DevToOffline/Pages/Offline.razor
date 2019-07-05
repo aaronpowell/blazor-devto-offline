@@ -3,10 +3,10 @@
 
 <ColourPicker OnClick="@SetStrokeColour"
               Colours="@(new[] { "#F4908E", "#F2F097", "#88B0DC", "#F7B5D1", "#53C4AF", "#FDE38C" })"
-              @ref="@colourPicker"/>
+              @ref="@colourPicker" />
 
-<canvas height="@windowSize.Height"
-        width="@windowSize.Width"
+<canvas height="@WindowSize.Height"
+        width="@WindowSize.Width"
         @onmousedown="@StartPaint"
         @onmousemove="@Paint"
         @onmouseup="@StopPaint"
@@ -14,16 +14,15 @@
         @ref="@canvas" />
 
 @code {
+    [CascadingParameter] WindowSize WindowSize { get; set; }
+
     ElementRef canvas;
-    WindowSize windowSize;
     Canvas2DContext ctx;
     ColourPicker colourPicker;
 
-    protected override async Task OnInitAsync()
+    protected override void OnParametersSet()
     {
-        windowSize = await JsRuntime.InvokeAsync<WindowSize>("getWindowSize");
         ctx = new Canvas2DContext(JsRuntime, canvas);
-        await ctx.SetStrokeStyleAsync(colourPicker.CurrentColour);
     }
 
     bool isPainting = false;

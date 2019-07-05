@@ -1,3 +1,15 @@
 @inherits LayoutComponentBase
+@inject IJSRuntime JsRuntime
 
-@Body
+<CascadingValue Value="@windowSize">
+    @Body
+</CascadingValue>
+
+@code {
+    WindowSize windowSize;
+
+    protected override async Task OnInitAsync()
+    {
+        windowSize = await JsRuntime.InvokeAsync<WindowSize>("getWindowSize");
+    }
+}
