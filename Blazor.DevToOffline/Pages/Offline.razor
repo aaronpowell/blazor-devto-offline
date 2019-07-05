@@ -1,12 +1,8 @@
 @page "/"
 @inject IJSRuntime JsRuntime
 
-<div class="colours">
-    @foreach (var colour in colours)
-    {
-        <button class="colour" @onclick="@SetStrokeColour(colour)"></button>
-    }
-</div>
+<ColourPicker OnClick="@SetStrokeColour"
+              Colours="@colours" />
 
 <canvas height="@windowSize.Height"
         width="@windowSize.Width"
@@ -17,14 +13,9 @@
         @ref="@canvas" />
 
 @code {
-    IEnumerable<string> colours = new[] { "#000", "#F4908E", "#F2F097", "#88B0DC", "#F7B5D1", "#53C4AF", "#FDE38C" };
+    IEnumerable<string> colours = new[] { "#F4908E", "#F2F097", "#88B0DC", "#F7B5D1", "#53C4AF", "#FDE38C" };
     ElementRef canvas;
-
     WindowSize windowSize;
-    bool isPainting = false;
-    long x;
-    long y;
-
     Canvas2DContext ctx;
 
     protected override async Task OnInitAsync()
@@ -34,6 +25,9 @@
         await ctx.SetStrokeStyleAsync(colours.First());
     }
 
+    bool isPainting = false;
+    long x;
+    long y;
     private void StartPaint(UIMouseEventArgs e)
     {
         x = e.ClientX;

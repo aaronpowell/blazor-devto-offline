@@ -8,30 +8,26 @@
 }
 
     .colours :first-child {
-        background-color: #000;
-    }
-
-    .colours :nth-child(2) {
         background-color: #F4908E
     }
 
-    .colours :nth-child(3) {
+    .colours :nth-child(2) {
         background-color: #F2F097
     }
 
-    .colours :nth-child(4) {
+    .colours :nth-child(3) {
         background-color: #88B0DC
     }
 
-    .colours :nth-child(5) {
+    .colours :nth-child(4) {
         background-color: #F7B5D1
     }
 
-    .colours :nth-child(6) {
+    .colours :nth-child(5) {
         background-color: #53C4AF
     }
 
-    .colours :nth-child(7) {
+    .colours :nth-child(6) {
         background-color: #FDE38C
     }
 

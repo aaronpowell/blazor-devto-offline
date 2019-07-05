@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.DevToOffline", "Blazor.DevToOffline\Blazor.DevToOffline.csproj", "{C532DD36-2FDC-431F-ACD2-D7B5CB207DED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.DevToOffline", "Blazor.DevToOffline\Blazor.DevToOffline.csproj", "{C532DD36-2FDC-431F-ACD2-D7B5CB207DED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

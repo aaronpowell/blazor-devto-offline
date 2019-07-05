@@ -1,20 +1,20 @@
 ﻿window.getWindowSize = () => {
-    return { height: innerHeight, width: window.innerWidth };
+    return { height: window.innerHeight, width: window.innerWidth };
 };
 
 ((window) => {
     let canvasContextCache = {};
 
-    let getContext = (canvasId) => {
-        if (!canvasContextCache[canvasId]) {
-            canvasContextCache[canvasId] = canvasId.getContext('2d');
+    let getContext = (canvas) => {
+        if (!canvasContextCache[canvas]) {
+            canvasContextCache[canvas] = canvas.getContext('2d');
         }
-        return canvasContextCache[canvasId];
+        return canvasContextCache[canvas];
     };
 
     window.__blazorCanvasInterop = {
-        drawLine: (id, sX, sY, eX, eY) => {
-            let context = getContext(id);
+        drawLine: (canvas, sX, sY, eX, eY) => {
+            let context = getContext(canvas);
 
             context.lineJoin = 'round';
             context.lineWidth = 5;
@@ -25,8 +25,8 @@
             context.stroke();
         },
 
-        setContextPropertyValue: (id, propertyName, propertyValue) => {
-            let context = getContext(id);
+        setContextPropertyValue: (canvas, propertyName, propertyValue) => {
+            let context = getContext(canvas);
 
             context[propertyName] = propertyValue;
         }
