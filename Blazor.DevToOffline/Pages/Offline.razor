@@ -1,0 +1,69 @@
+@page "/"
+@inject IJSRuntime JsRuntime
+
+<div class="colours">
+    @foreach (var colour in colours)
+    {
+        <button class="colour" @onclick="@SetStrokeColour(colour)"></button>
+    }
+</div>
+
+<canvas height="@windowSize.Height"
+        width="@windowSize.Width"
+        @onmousedown="@StartPaint"
+        @onmousemove="@Paint"
+        @onmouseup="@StopPaint"
+        @onmouseout="@StopPaint"
+        @ref="@canvas" />
+
+@code {
+    IEnumerable<string> colours = new[] { "#000", "#F4908E", "#F2F097", "#88B0DC", "#F7B5D1", "#53C4AF", "#FDE38C" };
+    ElementRef canvas;
+
+    WindowSize windowSize;
+    bool isPainting = false;
+    long x;
+    long y;
+
+    Canvas2DContext ctx;
+
+    protected override async Task OnInitAsync()
+    {
+        windowSize = await JsRuntime.InvokeAsync<WindowSize>("getWindowSize");
+        ctx = new Canvas2DContext(JsRuntime, canvas);
+        await ctx.SetStrokeStyleAsync(colours.First());
+    }
+
+    private void StartPaint(UIMouseEventArgs e)
+    {
+        x = e.ClientX;
+        y = e.ClientY;
+        isPainting = true;
+    }
+
+    private async Task Paint(UIMouseEventArgs e)
+    {
+        if (isPainting)
+        {
+            var eX = e.ClientX;
+            var eY = e.ClientY;
+
+            await ctx.DrawLine(x, y, eX, eY);
+            x = eX;
+            y = eY;
+        }
+    }
+
+    private void StopPaint(UIMouseEventArgs e)
+    {
+        isPainting = false;
+    }
+
+    private Action<UIMouseEventArgs> SetStrokeColour(string colour)
+    {
+        return async _ =>
+        {
+            await ctx.SetStrokeStyleAsync(colour);
+        };
+    }
+}

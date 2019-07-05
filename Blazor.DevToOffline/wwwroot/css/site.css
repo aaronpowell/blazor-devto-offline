@@ -1,0 +1,44 @@
+﻿.colours {
+    z-index: 2;
+    margin: 0 40px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 35%;
+}
+
+    .colours :first-child {
+        background-color: #000;
+    }
+
+    .colours :nth-child(2) {
+        background-color: #F4908E
+    }
+
+    .colours :nth-child(3) {
+        background-color: #F2F097
+    }
+
+    .colours :nth-child(4) {
+        background-color: #88B0DC
+    }
+
+    .colours :nth-child(5) {
+        background-color: #F7B5D1
+    }
+
+    .colours :nth-child(6) {
+        background-color: #53C4AF
+    }
+
+    .colours :nth-child(7) {
+        background-color: #FDE38C
+    }
+
+.colour {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: none;
+}

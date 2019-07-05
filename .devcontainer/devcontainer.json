@@ -1,0 +1,6 @@
+{
+  "name": "Blazor Sandbox",
+  "dockerFile": "Dockerfile",
+  "appPort": 9000,
+  "extensions": ["ms-vscode.csharp"]
+}
